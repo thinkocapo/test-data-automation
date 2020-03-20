@@ -14,6 +14,27 @@ browsers = [
         "platform": "Windows 10",
         "browserName": "chrome",
         "version": "latest"
+    }, {
+        "seleniumVersion": '3.4.0',
+        "platform": "Windows 10",
+        "browserName": "firefox",
+        "version": "latest"
+    }, {
+        "seleniumVersion": '3.4.0',
+        "platform": "Windows 7",
+        "browserName": "internet explorer",
+        "version": "latest"
+    }, {
+        "seleniumVersion": '3.4.0',
+        "platform": "OS X 10.13",
+        "browserName": "safari",
+        "version": "latest-1"
+    }, {
+        "seleniumVersion": '3.4.0',
+        "platform": "OS X 10.11",
+        "browserName": "chrome",
+        "version": "latest",
+        "extendedDebugging": True
     }]
 
 def pytest_generate_tests(metafunc):
