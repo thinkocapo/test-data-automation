@@ -12,29 +12,8 @@ browsers = [
     {
         "seleniumVersion": '3.4.0',
         "platform": "Windows 10",
-        "browserName": "MicrosoftEdge",
-        "version": "latest"
-    }, {
-        "seleniumVersion": '3.4.0',
-        "platform": "Windows 10",
-        "browserName": "firefox",
-        "version": "latest"
-    }, {
-        "seleniumVersion": '3.4.0',
-        "platform": "Windows 7",
-        "browserName": "internet explorer",
-        "version": "latest"
-    }, {
-        "seleniumVersion": '3.4.0',
-        "platform": "OS X 10.13",
-        "browserName": "safari",
-        "version": "latest-1"
-    }, {
-        "seleniumVersion": '3.4.0',
-        "platform": "OS X 10.11",
         "browserName": "chrome",
-        "version": "latest",
-        "extendedDebugging": True
+        "version": "latest"
     }]
 
 def pytest_generate_tests(metafunc):
@@ -70,7 +49,7 @@ def driver(request, browser_config):
     executor = RemoteConnection(selenium_endpoint, resolve_ip=False)
     browser = webdriver.Remote(
         command_executor=executor,
-        desired_capabilities=desired_caps, 
+        desired_capabilities=desired_caps,
         keep_alive=True
     )
 
