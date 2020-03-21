@@ -11,7 +11,7 @@ def test_add_to_cart(driver):
         endpoints = data_loaded['react_endpoints']
 
     for endpoint in endpoints:
-        for i in range(random.randrange(5)):
+        for i in range(random.randrange(10)):
             driver.get(endpoint)
 
             buy_button = driver.find_element_by_css_selector('.item button')
