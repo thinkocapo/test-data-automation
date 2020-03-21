@@ -1,6 +1,7 @@
 import pytest
 import time
 import yaml
+import random
 
 @pytest.mark.usefixtures("driver")
 def test_add_to_cart(driver):
@@ -10,11 +11,12 @@ def test_add_to_cart(driver):
         endpoints = data_loaded['react_endpoints']
 
     for endpoint in endpoints:
-        driver.get(endpoint)
+        for i in range(random.randrange(5)):
+            driver.get(endpoint)
 
-        buy_button = driver.find_element_by_css_selector('.item button')
-        for i in range(3):
-            buy_button.click()
+            buy_button = driver.find_element_by_css_selector('.item button')
+            for i in range(3):
+                buy_button.click()
 
-        driver.find_element_by_css_selector('.sidebar button').click()
-        time.sleep(3)
+            driver.find_element_by_css_selector('.sidebar button').click()
+            time.sleep(3)
