@@ -21,11 +21,6 @@ browsers = [
         "version": "latest"
     }, {
         "seleniumVersion": '3.4.0',
-        "platform": "Windows 7",
-        "browserName": "internet explorer",
-        "version": "latest"
-    }, {
-        "seleniumVersion": '3.4.0',
         "platform": "OS X 10.13",
         "browserName": "safari",
         "version": "latest-1"
