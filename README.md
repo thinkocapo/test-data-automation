@@ -22,7 +22,10 @@ py.test -s -n 2 frontend_tests
 
 ## Backend (`backend_tests` directory)
 Hits /unhandled, /handled, + /checkout backend demo APIs
-
+```
+cd backend_tests
+python backend_test.py
+```
 
 # Setup: Setting up cron job to trigger simulations
 
