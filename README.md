@@ -7,13 +7,11 @@ Runs automted tests against Sentry demos on GCP, in order to generate errors and
 - `frontend_tests/conftest.py` -> Sauce Labs configuration (browsers)
 - `backend_tests/backend_test.py` -> Hits /handled, /unhandled/, + /checkout backend demo APIs
 
-create_job.sh -> GCP-cron job (runs every 20 min from midnight-6am) -> TravisCI (runs tests)
+create_cron_job.sh -> GCP-cron job (runs every 20 min from midnight-6am) -> TravisCI (runs tests)
 
-Triggered by GCP Cloud Scheduler cron job
----
 # Tests
 
-## FrontEnd / Selenium (`tests` directory)
+## FrontEnd / Selenium (`frontend_tests` directory)
 Pulls up Sentry frontend in various browsers in parallel via selenium scripts.
 Test case will add items to cart and then click checkout
 
@@ -22,9 +20,10 @@ pip install - requirements.txt
 py.test -s -n 2 frontend_tests
 ```
 
-## Backend / curl
-TODO
----
+## Backend (`backend_tests` directory)
+Hits /unhandled, /handled, + /checkout backend demo APIs
+
+
 # Setup: Setting up cron job to trigger simulations
 
 We can trigger the travis builds on a schedule via Google Cloud Scheduler cron jobs.
