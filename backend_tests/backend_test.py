@@ -12,21 +12,22 @@ with open('../endpoints.yaml', 'r') as stream:
     endpoints = data_loaded['backend_endpoints']
 
     for endpoint in endpoints:
-        requests.get(urlparse.urljoin(endpoint, 'handled'))
-        requests.get(urlparse.urljoin(endpoint, 'unhandled'))
-        requests.post(urlparse.urljoin(endpoint, 'checkout'),
-            json={
-                "email": "%s@yahoo.com" % id_generator().lower(),
-                "cart": [{
-                    "id": "wrench",
-                    "name": "Wrench",
-                    "price": 500
-                }, {
-                    "id": "wrench",
-                    "name": "Wrench",
-                    "price": 500
-                }]
-            }
-        )
+        for i in range(random.randrange(10)):
+            requests.get(urlparse.urljoin(endpoint, 'handled'))
+            requests.get(urlparse.urljoin(endpoint, 'unhandled'))
+            requests.post(urlparse.urljoin(endpoint, 'checkout'),
+                json={
+                    "email": "%s@yahoo.com" % id_generator().lower(),
+                    "cart": [{
+                        "id": "wrench",
+                        "name": "Wrench",
+                        "price": 500
+                    }, {
+                        "id": "wrench",
+                        "name": "Wrench",
+                        "price": 500
+                    }]
+                }
+            )
 
 
