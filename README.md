@@ -1,16 +1,31 @@
-# TODO
+# Test Data Automation
+Runs automted tests against Sentry demos on GCP, in order to generate errors and transactions.
 
-# Run tests/simulation
+## Components / Moving parts
+- `create_job.sh` -> creates GCP cron job which hits Travis requests APIs to trigger build
+- `.travis.yml` -> runs automated tests / simulations
+- `frontend_tests/conftest.py` -> Sauce Labs configuration (browsers)
+- `TODO` -> backend curl...
+
+create_job.sh -> GCP-cron job (runs every 20 min from midnight-6am) -> TravisCI (runs tests)
+
+Triggered by GCP Cloud Scheduler cron job
+---
+# Tests
+
+## FrontEnd / Selenium (`tests` directory)
 Pulls up Sentry frontend in various browsers in parallel via selenium scripts.
 Test case will add items to cart and then click checkout
 
 ```
 pip install - requirements.txt
-py.test -s -n 2 tests
-
+py.test -s -n 2 frontend_tests
 ```
 
-# Setting up cron job to trigger simulations
+## Backend / curl
+TODO
+---
+# Setup: Setting up cron job to trigger simulations
 
 We can trigger the travis builds on a schedule via Google Cloud Scheduler cron jobs.
 
