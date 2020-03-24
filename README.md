@@ -4,7 +4,7 @@ Runs automted tests against Sentry demos on GCP, in order to generate errors and
 ## Components / Moving parts
 - `create_job.sh` -> creates GCP cron job which hits Travis requests APIs to trigger build
 - `.travis.yml` -> runs automated tests / simulations
-- `frontend_tests/conftest.py` -> Sauce Labs configuration (browsers)
+- `conftest.py` -> Sauce Labs configuration (browsers) for frontend_tests
 - `backend_tests/backend_test.py` -> Hits /handled, /unhandled/, + /checkout backend demo APIs
 
 create_cron_job.sh -> GCP-cron job (runs every 20 min from midnight-6am) -> TravisCI (runs tests)
