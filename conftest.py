@@ -68,6 +68,7 @@ def driver(request, browser_config):
         desired_capabilities=desired_caps,
         keep_alive=True
     )
+    browser.implicitly_wait(5)
 
     # This is specifically for SauceLabs plugin.
     # In case test fails after selenium session creation having this here will help track it down.
