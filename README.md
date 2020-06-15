@@ -1,5 +1,5 @@
 # Test Data Automation
-Runs automted tests against Sentry demos on GCP, in order to generate errors and transactions.
+Runs automted tests against Sentry demos on GCP, in order to generate errors and transactions to be sent to Sentry.io
 
 ## Components / Moving parts
 - `create_job.sh` -> creates GCP cron job which hits Travis requests APIs to trigger build
