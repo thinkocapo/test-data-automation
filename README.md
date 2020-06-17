@@ -39,3 +39,7 @@ To register:
 Docs:
 - https://cloud.google.com/sdk/gcloud/reference/scheduler/jobs/create/
 - https://docs.travis-ci.com/user/triggering-builds/
+
+Sentry docs:
+- https://docs.sentry.io/performance/distributed-tracing/
+- https://docs.sentry.io/performance/performance-metrics/
