@@ -43,3 +43,6 @@ Docs:
 Sentry docs:
 - https://docs.sentry.io/performance/distributed-tracing/
 - https://docs.sentry.io/performance/performance-metrics/
+
+# GIF
+TODO
