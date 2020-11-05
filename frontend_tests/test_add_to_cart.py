@@ -11,12 +11,12 @@ def test_add_to_cart(driver):
         endpoints = data_loaded['react_endpoints']
 
     for endpoint in endpoints:
-        for i in range(random.randrange(10)):
+        for i in range(random.randrange(20)):
             driver.get(endpoint)
 
             buy_button = driver.find_element_by_css_selector('.item button')
-            for i in range(3):
+            for i in range(random.randrange(3) + 3):
                 buy_button.click()
 
             driver.find_element_by_css_selector('.sidebar button').click()
-            time.sleep(3)
+            time.sleep(random.randrange(3) + 3)
