@@ -46,3 +46,6 @@ Sentry docs:
 
 # GIF
 TODO
+
+# To run "continuously"
+`$ while true; do clear && pytest -s -n 10 frontend_tests; done`
