@@ -26,7 +26,10 @@ Hits /unhandled, /handled, + /checkout backend demo APIs
 cd backend_tests
 python backend_test.py
 ```
-
+# Setup
+Python2  
+SAUCE_USERNAME  
+SAUCE_ACCESS_KEY
 # Setup: Setting up cron job to trigger simulations
 
 We can trigger the travis builds on a schedule via Google Cloud Scheduler cron jobs.
