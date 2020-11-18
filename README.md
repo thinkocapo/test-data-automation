@@ -16,7 +16,7 @@ Pulls up Sentry frontend in various browsers in parallel via selenium scripts.
 Test case will add items to cart and then click checkout
 
 ```
-pip install - requirements.txt
+pip install -r requirements.txt
 py.test -s -n 2 frontend_tests
 ```
 
@@ -30,6 +30,15 @@ python backend_test.py
 Python2  
 SAUCE_USERNAME  
 SAUCE_ACCESS_KEY
+
+If you get this error during pip install: `ERROR: Package 'setuptools' requires a different Python: 2.7.12 not in '>=3.5'` then run:
+```
+pip install -U pip
+pip install setuptools==44.0.0
+
+# and re-rerun:
+pip install -r requirements.txt
+```
 # Setup: Setting up cron job to trigger simulations
 
 We can trigger the travis builds on a schedule via Google Cloud Scheduler cron jobs.
