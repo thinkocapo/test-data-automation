@@ -20,6 +20,8 @@ pip install -r requirements.txt
 py.test -s -n 2 frontend_tests
 ```
 
+`-n` is for number of threads
+
 ## Backend (`backend_tests` directory)
 Hits /unhandled, /handled, + /checkout backend demo APIs
 ```
