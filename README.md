@@ -80,4 +80,4 @@ Let your job run then Check LCP WebVital for one of your JS transactions:
 ![LCP1](img/lcp-1.png)
 
 #### Trends
-?
+![Trends1](img/trends-1.png)
