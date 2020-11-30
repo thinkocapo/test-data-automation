@@ -16,9 +16,11 @@ Pulls up Sentry frontend in various browsers in parallel via selenium scripts.
 Test case will add items to cart and then click checkout
 
 ```
-pip install - requirements.txt
+pip install -r requirements.txt
 py.test -s -n 2 frontend_tests
 ```
+
+`-n` is for number of threads
 
 ## Backend (`backend_tests` directory)
 Hits /unhandled, /handled, + /checkout backend demo APIs
@@ -26,7 +28,19 @@ Hits /unhandled, /handled, + /checkout backend demo APIs
 cd backend_tests
 python backend_test.py
 ```
+# Setup
+Python2  
+SAUCE_USERNAME  
+SAUCE_ACCESS_KEY
 
+If you get this error during pip install: `ERROR: Package 'setuptools' requires a different Python: 2.7.12 not in '>=3.5'` then run:
+```
+pip install -U pip
+pip install setuptools==44.0.0
+
+# and re-rerun:
+pip install -r requirements.txt
+```
 # Setup: Setting up cron job to trigger simulations
 
 We can trigger the travis builds on a schedule via Google Cloud Scheduler cron jobs.
@@ -47,5 +61,23 @@ Sentry docs:
 # GIF
 TODO
 
-# To run "continuously"
-`$ while true; do clear && pytest -s -n 10 frontend_tests; done`
+# To run "continuously" in VM
+Use an isolated VM since it's constantly occupying +2 threads simultaneously
+```
+source .virtualenv/bin/activate
+nohup ./script.sh &
+```
+
+How to stop it
+```
+ps fjx
+kill -9 <PID of the script.sh>
+```
+
+## How to Verify Things are Are Working
+#### WebVitals
+Let your job run then Check LCP WebVital for one of your JS transactions:
+![LCP1](img/lcp-1.png)
+
+#### Trends
+![Trends1](img/trends-1.png)
