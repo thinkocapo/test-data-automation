@@ -61,5 +61,23 @@ Sentry docs:
 # GIF
 TODO
 
-# To run "continuously"
-`$ while true; do clear && pytest -s -n 10 frontend_tests; done`
+# To run "continuously" in VM
+Use an isolated VM since it's constantly occupying +2 threads simultaneously
+```
+source .virtualenv/bin/activate
+nohup ./script.sh &
+```
+
+How to stop it
+```
+ps fjx
+kill -9 <PID of the script.sh>
+```
+
+## How to Verify Things are Are Working
+#### WebVitals
+Let your job run then Check LCP WebVital for one of your JS transactions:
+![LCP1](img/lcp-1.png)
+
+#### Trends
+?
