@@ -1,12 +1,22 @@
 import pytest
 from os import environ
-
+import sentry_sdk
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.remote.remote_connection import RemoteConnection
+from dotenv import load_dotenv
+load_dotenv()
+DSN = os.getenv("DSN")
+print("DSN", DSN)
 
 import urllib3
 urllib3.disable_warnings()
+
+sentry_sdk.init(
+    dsn= DSN,
+    traces_sample_rate=0,
+    environment="prod",
+)
 
 browsers = [
     {
@@ -76,6 +86,7 @@ def driver(request, browser_config):
     if browser is not None:
         print("SauceOnDemandSessionID={} job-name={}".format(browser.session_id, test_name))
     else:
+        sentry_sdk.capture_message("Never created!")
         raise WebDriverException("Never created!")
 
     yield browser
@@ -83,6 +94,8 @@ def driver(request, browser_config):
     # report results
     # use the test result to send the pass/fail status to Sauce Labs
     sauce_result = "failed" if request.node.rep_call.failed else "passed"
+    if sauce_result == "failed":
+        sentry_sdk.capture_message(sauce_result)
     browser.execute_script("sauce:job-result={}".format(sauce_result))
     browser.quit()
 
