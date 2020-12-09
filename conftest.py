@@ -57,8 +57,10 @@ def _generate_param_ids(name, values):
 
 @pytest.yield_fixture(scope='function')
 def driver(request, browser_config):
-    print(request.node)
-    sentry_sdk.capture_message("Started Pytest: %s" % (request.node.name))
+    # does not print
+    # print(request.node)
+
+    sentry_sdk.capture_message("Started Pytest for node: %s" % (request.node.name))
     # if the assignment below does not make sense to you please read up on object assignments.
     # The point is to make a copy and not mess with the original test spec.
     desired_caps = dict()
@@ -102,7 +104,7 @@ def driver(request, browser_config):
     # TODO compare to 'invalid selector css' errors in Saucelabs VM
     sauce_result = "failed" if request.node.rep_call.failed else "passed"
     if sauce_result == "failed":
-        sentry_sdk.capture_message(sauce_result)
+        sentry_sdk.capture_message("Sauce Result: %s %s %s" % (sauce_result, browser.session_id, test_name))
     browser.execute_script("sauce:job-result={}".format(sauce_result))
     browser.quit()
 
