@@ -6,6 +6,7 @@ from sentry_sdk import set_tag
 
 @pytest.mark.usefixtures("driver")
 def test_add_to_cart(driver):
+    # TODO, this does not set the tag
     set_tag("test", "test_add_to_cart")
     with open('endpoints.yaml', 'r') as stream:
         data_loaded = yaml.safe_load(stream)
