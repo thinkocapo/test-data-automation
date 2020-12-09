@@ -83,4 +83,5 @@ Let your job run then Check LCP WebVital for one of your JS transactions:
 ![Trends1](img/trends-1.png)
 
 ## Troubleshooting
-Tests may fail intermittently due to instability of connections/selenium/etc. 
+- Tests may fail intermittently due to instability of connections/selenium/etc. 
+- Using more threads `-n` means more transactions, so less likely to dip below a Low Traffic threshold (metric alert)
