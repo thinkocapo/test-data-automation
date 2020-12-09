@@ -4,3 +4,5 @@ pytest==4.4.0
 pytest-xdist
 requests
 pyyaml==3.11
+sentry-sdk==0.19.4
+python-dotenv==0.12.0
