@@ -1,4 +1,5 @@
 import pytest
+import os
 from os import environ
 import sentry_sdk
 from selenium import webdriver
@@ -93,6 +94,10 @@ def driver(request, browser_config):
     # Teardown starts here
     # report results
     # use the test result to send the pass/fail status to Sauce Labs
+    # TODO what else can be used for debugging from `request.node.rep_call.`
+    # TODO check nohup.out file for output of what went wrong
+    # TODO compare to breadcrumbs recorded by .capture_message
+    # TODO compare to 'invalid selector css' errors in Saucelabs VM
     sauce_result = "failed" if request.node.rep_call.failed else "passed"
     if sauce_result == "failed":
         sentry_sdk.capture_message(sauce_result)
