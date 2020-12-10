@@ -98,10 +98,6 @@ def driver(request, browser_config):
     # Teardown starts here
     # report results
     # use the test result to send the pass/fail status to Sauce Labs
-    # TODO what else can be used for debugging from `request.node.rep_call.`
-    # TODO check nohup.out file for output of what went wrong
-    # TODO compare to breadcrumbs recorded by .capture_message
-    # TODO compare to 'invalid selector css' errors in Saucelabs VM
     sauce_result = "failed" if request.node.rep_call.failed else "passed"
     if sauce_result == "failed":
         sentry_sdk.capture_message("Sauce Result: %s %s %s" % (sauce_result, browser.session_id, test_name))
