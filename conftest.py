@@ -57,9 +57,6 @@ def _generate_param_ids(name, values):
 
 @pytest.yield_fixture(scope='function')
 def driver(request, browser_config):
-    # does not print
-    # print(request.node)
-
     sentry_sdk.capture_message("Started Pytest for node: %s" % (request.node.name))
     # if the assignment below does not make sense to you please read up on object assignments.
     # The point is to make a copy and not mess with the original test spec.

@@ -41,6 +41,13 @@ pip install setuptools==44.0.0
 # and re-rerun:
 pip install -r requirements.txt
 ```
+
+Set your `DSN` in:
+```
+touch .env
+```
+This is so any errors occuring in conftest.py (the pytest and updates on selenium jobs) get reported.
+
 # Setup: Setting up cron job to trigger simulations
 
 We can trigger the travis builds on a schedule via Google Cloud Scheduler cron jobs.
