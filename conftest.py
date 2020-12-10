@@ -1,12 +1,23 @@
 import pytest
+import os
 from os import environ
-
+import sentry_sdk
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.remote.remote_connection import RemoteConnection
+from dotenv import load_dotenv
+load_dotenv()
+DSN = os.getenv("DSN")
+print("DSN", DSN)
 
 import urllib3
 urllib3.disable_warnings()
+
+sentry_sdk.init(
+    dsn= DSN,
+    traces_sample_rate=0,
+    environment="prod",
+)
 
 browsers = [
     {
@@ -46,6 +57,7 @@ def _generate_param_ids(name, values):
 
 @pytest.yield_fixture(scope='function')
 def driver(request, browser_config):
+    sentry_sdk.capture_message("Started Pytest for node: %s" % (request.node.name))
     # if the assignment below does not make sense to you please read up on object assignments.
     # The point is to make a copy and not mess with the original test spec.
     desired_caps = dict()
@@ -76,6 +88,7 @@ def driver(request, browser_config):
     if browser is not None:
         print("SauceOnDemandSessionID={} job-name={}".format(browser.session_id, test_name))
     else:
+        sentry_sdk.capture_message("Never created - case test failed: %s %s" % (browser.session_id, test_name))
         raise WebDriverException("Never created!")
 
     yield browser
@@ -83,6 +96,8 @@ def driver(request, browser_config):
     # report results
     # use the test result to send the pass/fail status to Sauce Labs
     sauce_result = "failed" if request.node.rep_call.failed else "passed"
+    if sauce_result == "failed":
+        sentry_sdk.capture_message("Sauce Result: %s %s %s" % (sauce_result, browser.session_id, test_name))
     browser.execute_script("sauce:job-result={}".format(sauce_result))
     browser.quit()
 

@@ -41,6 +41,13 @@ pip install setuptools==44.0.0
 # and re-rerun:
 pip install -r requirements.txt
 ```
+
+Set your `DSN` in:
+```
+touch .env
+```
+This is so any errors occuring in conftest.py (the pytest and updates on selenium jobs) get reported.
+
 # Setup: Setting up cron job to trigger simulations
 
 We can trigger the travis builds on a schedule via Google Cloud Scheduler cron jobs.
@@ -81,3 +88,7 @@ Let your job run then Check LCP WebVital for one of your JS transactions:
 
 #### Trends
 ![Trends1](img/trends-1.png)
+
+## Troubleshooting
+- Tests may fail intermittently due to instability of connections/selenium/etc. 
+- Using more threads `-n` means more transactions, so less likely to dip below a Low Traffic threshold (metric alert)
