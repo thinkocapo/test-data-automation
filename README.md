@@ -27,8 +27,11 @@ python backend_test.py
 # Setup
 ### Python, app, environment
 Python2  
+Set env vars:
+```
 SAUCE_USERNAME  
 SAUCE_ACCESS_KEY
+```
 
 If you get this error during pip install: `ERROR: Package 'setuptools' requires a different Python: 2.7.12 not in '>=3.5'` then run:
 ```
@@ -89,8 +92,8 @@ TODO
 - Transaction volume comes from both `frontend_tests` that hit front end apps which then call their corresponding backends, as well as `backend_tests` which only hit the backend apps.
 - Make sure your Metric Alerts are set the same for each project, and you're monitoring the right event type (transactions vs error)
 
-# Setting up GCP cron job to trigger simulations
-12/11/2020 Update - This is not actively being used. See Run instructions.
+## Setting up GCP cron job to trigger simulations
+**12/11/2020 Update** - This is not actively being used. See Run instructions.
 
 - `create_job.sh` -> creates GCP cron job which hits Travis requests APIs to trigger build
 - `.travis.yml` -> runs automated tests / simulations
