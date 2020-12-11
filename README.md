@@ -95,3 +95,4 @@ Let your job run then Check LCP WebVital for one of your JS transactions:
 - Using more threads `-n` means more transactions, so less likely to dip below a Low Traffic threshold (metric alert)
 - Front end apps (containers) must make requests to unique Back end apps, and not share the same back end apps, or this will skew transaction numbers in metric alerts
 - Transaction volume comes from both `frontend_tests` that hit front end apps which then call their corresponding backends, as well as `backend_tests` which only hit the backend apps.
+- Make sure your Metric Alerts are set the same for each project, and you're monitoring the right event type (transactions vs error)
