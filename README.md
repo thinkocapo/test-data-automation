@@ -25,7 +25,7 @@ cd backend_tests
 python backend_test.py
 ```
 # Setup
-#### Python and app requirements
+### Python, app, environment
 Python2  
 SAUCE_USERNAME  
 SAUCE_ACCESS_KEY
@@ -45,8 +45,8 @@ touch .env
 ```
 This is so any errors occuring in conftest.py (the pytest and updates on selenium jobs) get reported.
 
-#### Metric Alerts for Low Traffic monitoring
-This is so you get notified if the job stops running.
+### Metric Alerts for Low Traffic monitoring
+This is so you can monitor it's running correctly, and get notified if the job stops running.
 ```
 event.type:transaction
 transaction:get_tools # the transaction you want to monitor
@@ -67,8 +67,9 @@ nohup ./script.sh &
 How to stop it
 ```
 ps fjx
-kill -9 <PID of the script.sh>
+kill -9 <PID of the bash process with script.sh>
 ```
+
 
 ## How to Verify Things are Are Working
 #### WebVitals
