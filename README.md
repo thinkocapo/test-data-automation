@@ -91,4 +91,7 @@ Let your job run then Check LCP WebVital for one of your JS transactions:
 
 ## Troubleshooting
 - Tests may fail intermittently due to instability of connections/selenium/etc. 
+- average transactions per 5-minute interval should be between 50 and 200, if you're monitoring it in a Metric Alert
 - Using more threads `-n` means more transactions, so less likely to dip below a Low Traffic threshold (metric alert)
+- Front end apps (containers) must make requests to unique Back end apps, and not share the same back end apps, or this will skew transaction numbers in metric alerts
+- Transaction volume comes from both `frontend_tests` that hit front end apps which then call their corresponding backends, as well as `backend_tests` which only hit the backend apps.
