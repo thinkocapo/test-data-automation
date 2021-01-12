@@ -58,8 +58,10 @@ def _generate_param_ids(name, values):
 
 @pytest.yield_fixture(scope='function')
 def driver(request, browser_config):
-    sentry_sdk.set_context("request_node_name", request.node.name)
-    sentry_sdk.capture_message("Started TEST Pytest for node")
+    sentry_sdk.set_context("pytest", {
+        "request_node_name": request.node.name
+    })
+    sentry_sdk.capture_message("Started Pytest for node")
 
     # if the assignment below does not make sense to you please read up on object assignments.
     # The point is to make a copy and not mess with the original test spec.
@@ -101,8 +103,8 @@ def driver(request, browser_config):
     sauce_result = "failed" if request.node.rep_call.failed else "passed"
     if sauce_result == "failed":
         sentry_sdk.set_context("sauce_result", {
-            "browser_session_id", browser.session_id,
-            "test_name", test_name
+            "browser_session_id": browser.session_id,
+            "test_name": test_name
         })
         sentry_sdk.capture_message("Sauce Result: %s" % (sauce_result))
     browser.execute_script("sauce:job-result={}".format(sauce_result))
