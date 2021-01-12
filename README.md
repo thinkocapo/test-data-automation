@@ -48,18 +48,6 @@ touch .env
 ```
 This is so any errors occuring in conftest.py (the pytest and updates on selenium jobs) get reported.
 
-### Metric Alerts for Low Traffic monitoring
-This is so you can monitor it's running correctly, and get notified if the job stops running.
-```
-event.type:transaction
-transaction:get_tools # the transaction you want to monitor
-function:count() over a 5 minuets window
-
-Critical Status
-Below:2
-```
-The average transactions per 5-minute interval should be between 50 and 200, if you're monitoring it in a Metric Alert.
-
 # Run: Continuously in VM (Compute Engine)
 Use an isolated VM since it's constantly occupying +2 threads simultaneously
 ```
@@ -73,6 +61,17 @@ ps fjx
 kill -9 <PID of the bash process with script.sh>
 ```
 
+## Metric Alerts for Low Traffic monitoring
+This is so you can monitor it's running correctly, and get notified if the job stops running.
+```
+event.type:transaction
+transaction:get_tools # the transaction you want to monitor
+function:count() over a 5 minuets window
+
+Critical Status
+Below:2
+```
+The average transactions per 5-minute interval should be between 50 and 200, if you're monitoring it in a Metric Alert.
 
 ## How to Verify Things are Are Working
 #### WebVitals
@@ -92,8 +91,8 @@ TODO
 - Transaction volume comes from both `frontend_tests` that hit front end apps which then call their corresponding backends, as well as `backend_tests` which only hit the backend apps.
 - Make sure your Metric Alerts are set the same for each project, and you're monitoring the right event type (transactions vs error)
 
-## Setting up GCP cron job to trigger simulations
-**12/11/2020 Update** - This is not actively being used. See Run instructions.
+## Setting up GCP cronjob to trigger simulations
+**12/11/2020 Update** - This GCP cronjob is not actively being used. See Run instructions.
 
 - `create_job.sh` -> creates GCP cron job which hits Travis requests APIs to trigger build
 - `.travis.yml` -> runs automated tests / simulations

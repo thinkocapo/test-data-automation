@@ -16,8 +16,9 @@ urllib3.disable_warnings()
 sentry_sdk.init(
     dsn= DSN,
     traces_sample_rate=0,
-    environment="prod",
+    environment="prod"
 )
+sentry_sdk.set_tag("demo-automation", "test-data-automation")
 
 browsers = [
     {
@@ -57,7 +58,11 @@ def _generate_param_ids(name, values):
 
 @pytest.yield_fixture(scope='function')
 def driver(request, browser_config):
-    sentry_sdk.capture_message("Started Pytest for node: %s" % (request.node.name))
+    sentry_sdk.set_context("pytest", {
+        "request_node_name": request.node.name
+    })
+    sentry_sdk.capture_message("Started Pytest for node")
+
     # if the assignment below does not make sense to you please read up on object assignments.
     # The point is to make a copy and not mess with the original test spec.
     desired_caps = dict()
@@ -97,10 +102,14 @@ def driver(request, browser_config):
     # use the test result to send the pass/fail status to Sauce Labs
     sauce_result = "failed" if request.node.rep_call.failed else "passed"
     if sauce_result == "failed":
-        sentry_sdk.capture_message("Sauce Result: %s %s %s" % (sauce_result, browser.session_id, test_name))
+        sentry_sdk.set_context("sauce_result", {
+            "browser_session_id": browser.session_id,
+            "test_name": test_name
+        })
+        sentry_sdk.capture_message("Sauce Result: %s" % (sauce_result))
     browser.execute_script("sauce:job-result={}".format(sauce_result))
     browser.quit()
-
+    sentry_sdk.capture_message("Finished browser.quit()")
 
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_makereport(item, call):
