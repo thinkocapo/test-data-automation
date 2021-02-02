@@ -53,6 +53,9 @@ Use an isolated VM since it's constantly occupying +2 threads simultaneously
 ```
 source .virtualenv/bin/activate
 nohup ./script.sh &
+
+# writes stdout stderr to null, so don't end up with a nohup.out file that continues growing in size
+nohup ./script.sh >/dev/null 2>&1 &
 ```
 
 How to stop it
