@@ -26,11 +26,11 @@ browsers = [
         "platform": "Windows 10",
         "browserName": "chrome",
         "version": "latest"
-    # }, {
-        # "seleniumVersion": '3.4.0',
-        # "platform": "Windows 10",
-        # "browserName": "firefox",
-        # "version": "latest"
+    }, {
+        "seleniumVersion": '3.4.0',
+        "platform": "Windows 10",
+        "browserName": "firefox",
+        "version": "latest"
     }, {
         "seleniumVersion": '3.4.0',
         "platform": "OS X 10.13",
